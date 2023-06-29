@@ -1,0 +1,12 @@
+@use "../util/" as *;
+
+.container {
+  width: 100%;
+  padding: 0 clamp(1.375rem, 1.2rem + 0.89vw, 2rem);
+  max-width: rem(1120);
+  margin: 0 auto;
+
+  @include breakpoints(large) {
+    padding: 0;
+  }
+}

@@ -1,0 +1,56 @@
+@use "../util/" as *;
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: rem(50) 0;
+
+  #icon {
+    width: rem(35);
+    cursor: pointer;
+    margin: rem(10) 0;
+  }
+
+  .dev-name {
+    color: var(--site-name);
+    font-size: rem(22);
+    cursor: pointer;
+    font-weight: 700;
+  }
+
+  .nav__items {
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    gap: rem(25);
+    position: relative;
+
+    .nav__item {
+      list-style: none;
+    }
+
+    .nav__link {
+      position: relative;
+      color: var(--text-primary);
+      font-weight: 500;
+      font-size: rem(18);
+      padding-bottom: rem(5);
+    }
+
+    .nav__link-active {
+      color: var(--active-link);
+    }
+
+    .nav__marker {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: rem(3);
+      width: 0;
+      background-color: var(--active-link);
+      transition: all 500ms;
+      border-radius: rem(10);
+    }
+  }
+}
