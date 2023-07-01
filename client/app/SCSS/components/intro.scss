@@ -1,0 +1,110 @@
+@use "../util/" as *;
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  height: calc(100vh - rem(60));
+
+  &__hello {
+    .wave-hand {
+      background-image: url("../../../images/wave-hand.png");
+      width: rem(40);
+      height: rem(40);
+      margin-left: rem(10);
+
+      @keyframes wave {
+        from {
+          transform: none;
+        }
+
+        15% {
+          transform: translate3d(-20%, 0, 0) rotate3d(0, 0, 1, -10deg);
+        }
+
+        30% {
+          transform: translate3d(10%, 0, 0) rotate3d(0, 0, 1, 7deg);
+        }
+
+        45% {
+          transform: translate3d(-15%, 0, 0) rotate3d(0, 0, 1, -10deg);
+        }
+
+        60% {
+          transform: translate3d(10%, 0, 0) rotate3d(0, 0, 1, 5deg);
+        }
+
+        75% {
+          transform: translate3d(-5%, 0, 0) rotate3d(0, 0, 1, -2deg);
+        }
+
+        to {
+          transform: none;
+        }
+      }
+
+      &:hover {
+        animation: wave 1s;
+      }
+    }
+  }
+
+  &__hello,
+  &__tagline {
+    font-size: rem(40);
+    font-weight: 300;
+
+    @include breakpoints-down(large) {
+      font-size: rem(32);
+    }
+
+    @include breakpoints-down(medium) {
+      font-size: rem(28);
+    }
+  }
+
+  &__tagline {
+    max-width: rem(800);
+
+    .name {
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+  }
+
+  &__contact {
+    font-size: rem(22);
+    font-weight: 400;
+
+    .pointer {
+      background-image: url("../../../images/pointer.png");
+      width: rem((30));
+      height: rem(30);
+      margin: 0 rem(5);
+      vertical-align: text-bottom;
+    }
+
+    @include breakpoints-down(medium) {
+      font-size: rem(16);
+    }
+  }
+
+  .highlight-link {
+    transition: all 0.3s ease-in-out;
+    font-weight: 400;
+    text-decoration: none;
+    display: inline-block;
+    padding: 2px 3px;
+    text-decoration: none;
+    box-shadow: inset 0 rem(-3) 0 #007bff;
+    padding: 5px;
+    border-radius: rem(5);
+    cursor: pointer;
+    margin-left: rem(5);
+
+    &:hover {
+      box-shadow: inset 0 rem(-38) 0 0 #007bff;
+    }
+  }
+}

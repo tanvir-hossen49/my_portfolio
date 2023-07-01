@@ -13,12 +13,12 @@ function main() {
   //listener
   icon.addEventListener("click", handleToggleTheme);
   navItems.forEach(navItem => {
-    navItem.addEventListener("click", e => handleActiveNavItem(e.target));
+    navItem.addEventListener("click", e => handleActiveIndicator(e.target));
     navItem.addEventListener("mouseenter", e => showActiveIndicator(e.target));
     navItem.addEventListener("mouseout", () => resetActiveIndicator());
   });
   hamburger.addEventListener("click", () =>
-    handleHideAndShowNav(hamburger, navItemContainer)
+    handleToggleNav(hamburger, navItemContainer)
   );
 }
 
@@ -32,7 +32,12 @@ const handleToggleTheme = e => {
   }
 };
 
-const handleActiveNavItem = navLink => {
+const handleToggleNav = (hamburger, navItem) => {
+  hamburger.classList.toggle("active");
+  navItem.classList.toggle("active");
+};
+
+const handleActiveIndicator = navLink => {
   const marker = document.querySelector(".nav__marker");
   const navLinks = document.querySelectorAll(".nav__link");
 
@@ -45,16 +50,10 @@ const handleActiveNavItem = navLink => {
   activeNav = [offsetLeft, offsetWidth];
 
   navLinks.forEach(link => {
-    link.classList.contains("nav__link-active") &&
-      link.classList.remove("nav__link-active");
+    link.classList.contains("active") && link.classList.remove("active");
   });
 
-  navLink.classList.add("nav__link-active");
-};
-
-const handleHideAndShowNav = (hamburger, navItem) => {
-  hamburger.classList.toggle("active");
-  navItem.classList.toggle("active");
+  navLink.classList.add("active");
 };
 
 const showActiveIndicator = navLink => {

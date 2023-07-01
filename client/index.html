@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Golam Aziz</title>
-
     <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -12,7 +11,6 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
       rel="stylesheet"
     />
-
     <!-- js -->
     <script src="./dist/script.js" defer></script>
     <!-- css -->
@@ -21,7 +19,6 @@
   <body>
     <!-- nav start -->
     <nav class="nav container">
-
       <div>
         <a href="#" class="dev-name">&ltGolamAziz /&gt</a>
       </div>
@@ -29,7 +26,7 @@
       <ul class="nav__items">
         <div class="nav__marker"></div>
         <li class="nav__item">
-          <a href="#" class="nav__link nav__link-active">Home</a>
+          <a href="#" class="nav__link active">Home</a>
         </li>
         <li class="nav__item"><a href="#" class="nav__link">About</a></li>
         <li class="nav__item"><a href="#" class="nav__link">Projects</a></li>
@@ -47,5 +44,102 @@
       </div>
     </nav>
     <!-- nav end -->
+
+    <main>
+      <!-- intro section start -->
+      <div class="intro container">
+        <h2 class="intro__hello">
+          Hello
+          <span class="wave-hand emoji"></span>
+        </h2>
+        <h2 class="intro__tagline">
+          I'm <span class="name">Golam Aziz</span>, a front-end focused
+          full-stack developer building beautiful interfaces & experiences.
+        </h2>
+        <h3 class="intro__contact">
+          <span> Contact Me</span>
+          <span class="pointer emoji"> </span>
+          <span>
+            <a
+              href="https://www.linkedin.com/in/golam-aziz-a21404215/"
+              target="_blank"
+            >
+              <button
+                class="highlight-link"
+                aria-label="linkedin profile"
+                title="linkedin"
+              >
+                <img src="images/linkedin.svg" alt="linkedin" />
+              </button>
+            </a>
+
+            <a href="https://github.com/tanvir-hossen49/" target="_blank">
+              <button
+                class="highlight-link"
+                aria-label="github profile"
+                title="github"
+              >
+                <img src="images/github.svg" alt="github" />
+              </button>
+            </a>
+
+            <a href="https://www.facebook.com/golam.aziz.31/" target="_blank">
+              <button
+                class="highlight-link"
+                aria-label="facebook profile"
+                title="facebook"
+              >
+                <img src="images/facebook.svg" alt="facebook" />
+              </button>
+            </a>
+          </span>
+        </h3>
+      </div>
+      <!-- intro section end -->
+
+      <!-- skill section start -->
+      <section class="container section">
+        <div class="section__title">skill</div>
+        <div class="section__content">
+          <div class="skills">
+            <div class="skills__category">
+              <div class="skills__category-label">Language</div>
+              <ul>
+                <li class="skills__category-item">Javascript (ES6)</li>
+                <li class="skills__category-item">Typescript</li>
+                <li class="skills__category-item">HTML</li>
+                <li class="skills__category-item">CSS/Sass</li>
+              </ul>
+            </div>
+            <div class="skills__category">
+              <div class="skills__category-label">FRAMEWORKS</div>
+              <ul>
+                <li class="skills__category-item">React</li>
+                <li class="skills__category-item">Node</li>
+                <li class="skills__category-item">Bootstrap</li>
+                <li class="skills__category-item">TailwindCss</li>
+                <li class="skills__category-item">Mongoose</li>
+              </ul>
+            </div>
+            <div class="skills__category">
+              <div class="skills__category-label">TOOLS</div>
+              <ul>
+                <li class="skills__category-item">Git & GitHub</li>
+                <li class="skills__category-item">Firebase Authentication</li>
+                <li class="skills__category-item">Postman</li>
+                <li class="skills__category-item">NPM</li>
+                <li class="skills__category-item">MongoDB</li>
+                <li class="skills__category-item">Chrome Dev Tools</li>
+                <li class="skills__category-item">Stripe</li>
+
+                <li class="skills__category-item">Vercel</li>
+                <li class="skills__category-item">Netlify</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- skill section end -->
+    </main>
   </body>
 </html>

@@ -1,0 +1,29 @@
+@use "../util/" as *;
+.skills {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  @include breakpoints-down(large) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include breakpoints-down(medium) {
+    grid-template-columns: 1fr;
+  }
+
+  &__category-label {
+    font-weight: 700;
+    color: var(--text-primary);
+    text-transform: uppercase;
+  }
+
+  ul {
+    padding: 0;
+  }
+
+  &__category-item {
+    margin: 3px 0;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+  }
+}

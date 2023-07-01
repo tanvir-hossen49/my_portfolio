@@ -1,0 +1,21 @@
+.section {
+  display: flex;
+  justify-content: center;
+
+  &__title {
+    flex-shrink: 0;
+    width: 200px;
+    margin-right: 70px;
+    color: #007bff;
+    text-transform: uppercase;
+    text-align: right;
+    font-weight: 700;
+    letter-spacing: 2px;
+  }
+  &__content {
+    font-weight: 300;
+    font-size: rem(16);
+    width: 100%;
+    max-width: rem(650);
+  }
+}

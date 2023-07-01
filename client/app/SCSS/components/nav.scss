@@ -47,32 +47,32 @@
       right: rem(20);
       background-color: var(--app-background);
     }
+  }
 
-    .nav__link {
-      position: relative;
-      color: var(--text-primary);
-      font-weight: 500;
-      font-size: rem(18);
-      padding-bottom: rem(5);
-    }
+  &__link {
+    position: relative;
+    color: var(--text-primary);
+    font-weight: 500;
+    font-size: rem(18);
+    padding-bottom: rem(5);
+  }
 
-    .nav__link-active {
-      color: var(--active-link);
-    }
+  &__link.active {
+    color: var(--active-link);
+  }
 
-    .nav__marker {
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      height: rem(3);
-      width: 0;
-      background-color: var(--active-link);
-      transition: all 500ms;
-      border-radius: rem(10);
+  &__marker {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: rem(3);
+    width: 0;
+    background-color: var(--active-link);
+    transition: all 500ms;
+    border-radius: rem(10);
 
-      @include breakpoints-down(medium) {
-        display: none;
-      }
+    @include breakpoints-down(medium) {
+      display: none;
     }
   }
 
@@ -86,7 +86,7 @@
       height: rem(3);
       margin: rem(5) auto;
       transition: transform 0.3s ease-in-out;
-      background-color: var(--text-primary);
+      background-color: var(--text-secondary);
     }
 
     &.active .bar:nth-child(2) {
