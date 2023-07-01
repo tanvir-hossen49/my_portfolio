@@ -7,12 +7,9 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @include breakpoints-down(medium) {
-    grid-template-columns: 1fr;
-  }
-
   &__category-label {
     font-weight: 700;
+    font-size: rem(20);
     color: var(--text-primary);
     text-transform: uppercase;
   }
@@ -22,8 +19,8 @@
   }
 
   &__category-item {
-    margin: 3px 0;
-    font-size: 0.9rem;
+    margin: rem(3) 0;
+    font-size: 1rem;
     color: var(--text-secondary);
   }
 }
