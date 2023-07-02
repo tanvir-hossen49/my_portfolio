@@ -1,7 +1,9 @@
 let activeNav = ["0px", "51px"];
+const section = document.querySelector(".about__skills");
 
 window.onload = () => {
   main();
+  observer.observe(section);
 };
 
 function main() {
@@ -21,6 +23,14 @@ function main() {
     handleToggleNav(hamburger, navItemContainer)
   );
 }
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      countNumber();
+    }
+  });
+});
 
 const handleToggleTheme = e => {
   const bodyClass = document.body.classList;
@@ -70,4 +80,23 @@ const resetActiveIndicator = () => {
   const marker = document.querySelector(".nav__marker");
   marker.style.left = activeNav[0];
   marker.style.width = activeNav[1];
+};
+
+const countNumber = () => {
+  const valueDisplays = document.querySelectorAll(".count");
+  let interval = 1000;
+  valueDisplays.forEach(valueDisplay => {
+    let startValue = 0;
+    let endValue = parseInt(valueDisplay.getAttribute("data-val"));
+
+    let duration = Math.floor(interval / endValue);
+
+    let counter = setInterval(function () {
+      startValue += 1;
+      valueDisplay.textContent = startValue + "+";
+      if (startValue == endValue) {
+        clearInterval(counter);
+      }
+    }, duration);
+  });
 };

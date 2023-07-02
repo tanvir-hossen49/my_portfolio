@@ -10,9 +10,15 @@ a:active {
   text-decoration: none;
   outline: none;
   border: none;
+  color: var(--text-secondary);
 }
 li {
   list-style: none;
+}
+
+main {
+  display: grid;
+  gap: 50px;
 }
 
 button {

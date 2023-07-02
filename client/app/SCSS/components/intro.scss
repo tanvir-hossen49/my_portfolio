@@ -97,14 +97,14 @@
     display: inline-block;
     padding: 2px 3px;
     text-decoration: none;
-    box-shadow: inset 0 rem(-3) 0 #007bff;
+    box-shadow: inset 0 rem(-3) 0 var(--text-blue);
     padding: 5px;
     border-radius: rem(5);
     cursor: pointer;
     margin-left: rem(5);
 
     &:hover {
-      box-shadow: inset 0 rem(-38) 0 0 #007bff;
+      box-shadow: inset 0 rem(-38) 0 0 var(--text-blue);
     }
   }
 }

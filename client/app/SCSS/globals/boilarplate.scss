@@ -1,7 +1,10 @@
 html {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+  scroll-behavior: smooth;
+  scroll-padding-top: 75px;
 }
+
 *,
 :after,
 :before {
@@ -14,6 +17,7 @@ html {
 ::selection {
   background: var(--selected-bg);
 }
+
 body,
 html {
   margin: 0;
@@ -21,6 +25,7 @@ html {
   background-color: var(--app-background);
   color: var(--text-secondary);
   font-family: "Inter", sans-serif;
+  font-display: optional;
   line-height: 1.5;
   width: 100%;
 }

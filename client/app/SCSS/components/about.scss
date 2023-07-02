@@ -1,0 +1,79 @@
+@use "../util/" as *;
+
+.about {
+
+
+  &__skills {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    row-gap: rem(30);
+    margin: rem(30) 0;
+
+    .skill {
+      text-transform: uppercase;
+      .count {
+        font-size: rem(52);
+        font-weight: 700;
+        color: var(--text-blue);
+      }
+
+      .verify-skill {
+        cursor: pointer;
+        font-size: rem(20);
+        font-weight: 500;
+      }
+
+      .verify-skill:after {
+        content: "";
+        display: inline-block;
+        transition: all 0.2s ease-in-out;
+        position: relative;
+        bottom: 2px;
+        margin-left: rem(5);
+        background: url("../../../images/arrow.png") no-repeat center;
+        transform: rotate(-45deg);
+        background-size: 100%;
+        width: 20px;
+        height: 20px;
+        vertical-align: middle;
+      }
+
+      .verify-skill:hover:after {
+        transform: translateX(7px);
+      }
+    }
+  }
+}
+
+.resume {
+  text-transform: capitalize;
+  .arrow-link {
+    display: inline-block;
+    font-size: rem(20);
+    margin: rem(20) 0;
+    color: var(--text-secondary);
+    transition: all 0.2s ease-in-out;
+    font-weight: 500;
+    background-color: transparent;
+    white-space: nowrap;
+
+    &:after {
+      content: "";
+      display: inline-block;
+      transition: all 0.2s ease-in-out;
+      position: relative;
+      bottom: rem(2);
+      margin-left: rem(15);
+      background: url("../../../images/arrow.png") no-repeat center;
+      background-size: 100%;
+      width: rem(20);
+      height: rem(20);
+      vertical-align: middle;
+    }
+
+    &:hover:after {
+      transform: translateX(rem(7));
+    }
+  }
+}
