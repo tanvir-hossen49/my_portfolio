@@ -60,6 +60,10 @@
         background: var(--text-blue);
         color: var(--text-white);
       }
+
+      @include breakpoints-down(medium) {
+        width: 100%;
+      }
     }
   }
 }

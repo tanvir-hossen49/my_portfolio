@@ -9,7 +9,7 @@
 
   &__hello {
     opacity: 0;
-    animation: cool 0.2s linear forwards;
+    animation: upToDown 0.2s linear forwards;
 
     .wave-hand {
       background-image: url("../../../assets/images/wave-hand.png");
@@ -70,7 +70,7 @@
   &__tagline {
     max-width: rem(800);
     opacity: 0;
-    animation: cool 0.4s linear 0.2s forwards;
+    animation: upToDown 0.4s linear 0.2s forwards;
 
     .name {
       color: var(--text-primary);
@@ -82,14 +82,10 @@
     font-size: rem(22);
     font-weight: 400;
     opacity: 0;
-    animation: cool 0.6s linear 0.4s forwards;
+    animation: upToDown 0.6s linear 0.4s forwards;
 
-    .pointer {
-      background-image: url("../../../assets/images/pointer.png");
-      width: rem((30));
-      height: rem(30);
-      margin: 0 rem(5);
-      vertical-align: text-bottom;
+    .social-media-icon {
+      margin-left: rem(20);
     }
 
     @include breakpoints-down(medium) {
@@ -102,20 +98,19 @@
     font-weight: 400;
     text-decoration: none;
     display: inline-block;
-    padding: rem(2) rem(3);
     text-decoration: none;
     box-shadow: inset 0 rem(-3) 0 var(--text-blue);
-    padding: rem(5);
-    border-radius: rem(5);
+    padding: 0 rem(5);
     cursor: pointer;
     margin-left: rem(5);
 
     &:hover {
+      color: var(--text-white);
       box-shadow: inset 0 rem(-38) 0 0 var(--text-blue);
     }
   }
 
-  @keyframes cool {
+  @keyframes upToDown {
     0% {
       transform: translateY(-10px);
     }
