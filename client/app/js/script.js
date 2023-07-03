@@ -1,10 +1,10 @@
 // Global variables
 let activeNav = ["0px", "51px"];
-const section = document.querySelector(".about__skills");
+const aboutSkills = document.querySelector(".about__skills");
+const animateEle = document.querySelectorAll(".animate");
 
 window.onload = () => {
   main();
-  observer.observe(section);
 };
 
 function main() {
@@ -25,13 +25,15 @@ function main() {
   );
 }
 
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      countNumber();
-    }
+const observer = (cb, section) => {
+  return new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        cb(section);
+      }
+    });
   });
-});
+};
 
 const handleToggleTheme = e => {
   const bodyClass = document.body.classList;
@@ -101,3 +103,13 @@ const countNumber = () => {
     }, duration);
   });
 };
+
+const transitionPage = section => {
+  section.style.opacity = 1;
+  section.style.transform = "translateY(0)";
+  section.style.visibility = "visible";
+};
+
+//observer
+observer(countNumber, aboutSkills).observe(aboutSkills);
+animateEle.forEach(page => observer(transitionPage, page).observe(page));
