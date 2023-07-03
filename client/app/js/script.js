@@ -1,3 +1,4 @@
+// Global variables
 let activeNav = ["0px", "51px"];
 const section = document.querySelector(".about__skills");
 
@@ -36,9 +37,9 @@ const handleToggleTheme = e => {
   const bodyClass = document.body.classList;
   bodyClass.toggle("night");
   if (bodyClass.contains("night")) {
-    e.target.src = "./images/sun.png";
+    e.target.src = "./assets/images/sun.png";
   } else {
-    e.target.src = "./images/moon.png";
+    e.target.src = "./assets/images/moon.png";
   }
 };
 

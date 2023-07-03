@@ -1,18 +1,13 @@
-html {
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  scroll-behavior: smooth;
-  scroll-padding-top: 75px;
-}
-
 *,
 :after,
 :before {
-  -webkit-box-sizing: inherit;
   box-sizing: inherit;
 }
-::-moz-selection {
-  background: var(--selected-bg);
+
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  scroll-padding-top: 75px;
 }
 ::selection {
   background: var(--selected-bg);
@@ -30,11 +25,6 @@ html {
   width: 100%;
 }
 
-body.night ::-moz-selection,
-html.night ::-moz-selection {
-  color: var(--selected-text);
-  background: var(--selected-bg);
-}
 body.night ::selection,
 html.night ::selection {
   color: var(--selected-text);

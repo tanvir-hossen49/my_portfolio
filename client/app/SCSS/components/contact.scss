@@ -1,0 +1,65 @@
+@use "../util/" as *;
+
+.contact {
+  .section__sub-title {
+    font-family: "eurostile";
+    font-weight: lighter;
+    font-size: rem(28);
+    margin-bottom: rem(25);
+    background: -webkit-linear-gradient(
+      var(--text-secondary),
+      var(--text-secondary),
+      var(--app-background)
+    );
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    @include breakpoints-down(large) {
+      font-size: rem(25);
+    }
+  }
+}
+
+.form {
+  display: grid;
+  row-gap: rem(20);
+  margin-bottom: rem(20);
+
+  &__control {
+    label {
+      display: block;
+      font-size: rem(20);
+      padding-bottom: rem(5);
+      font-family: "eurostile";
+    }
+    input,
+    textarea {
+      width: 100%;
+      padding: rem(10);
+      border-radius: rem(5);
+      outline: none;
+      color: var(--text-secondary);
+      background-color: var(--app-background);
+      border: rem(2) solid var(--border);
+      font-size: rem(16);
+    }
+    textarea {
+      resize: vertical;
+    }
+    input[type="submit"] {
+      width: 25%;
+      padding: rem(10) rem(15);
+      border: rem(2) solid var(--border);
+      border-radius: rem(3);
+      font-weight: 500;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+      font-size: rem(16);
+
+      &:hover {
+        background: var(--text-blue);
+        color: var(--text-white);
+      }
+    }
+  }
+}

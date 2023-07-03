@@ -1,4 +1,5 @@
 @use "../util/" as *;
+
 .section {
   display: flex;
   justify-content: center;
@@ -8,6 +9,7 @@
   }
 
   &__title {
+    font-family: "eurostile";
     flex-shrink: 0;
     width: rem(200);
     margin-right: rem(100);
@@ -15,13 +17,13 @@
     text-transform: uppercase;
     text-align: right;
     font-weight: 700;
-    letter-spacing: 2px;
+    letter-spacing: rem(2);
     font-size: rem(20);
     white-space: nowrap;
 
     @include breakpoints-down(medium) {
-      width: 0px;
-      margin-right: 0px;
+      width: 0;
+      margin-right: 0;
       margin-bottom: rem(20);
       text-align: left;
     }
