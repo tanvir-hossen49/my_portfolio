@@ -3,7 +3,6 @@
 .section {
   display: flex;
   justify-content: center;
- 
 
   @include breakpoints-down(medium) {
     flex-direction: column;
@@ -35,9 +34,5 @@
     width: 100%;
     max-width: rem(650);
     text-align: justify;
-
-    @include breakpoints-down(medium) {
-      padding-left: rem(50);
-    }
   }
 }

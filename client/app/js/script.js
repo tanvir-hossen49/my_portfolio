@@ -1,58 +1,46 @@
 // Global variables
-let activeNav = ["0px", "51px"];
-const aboutSkills = document.querySelector(".about__skills");
-const animateEle = document.querySelectorAll(".animate");
+let activeNav = ["0px", "51px"]; //[offsetLeft,offsetWidth ]
+const darkLightToggleIcon = document.getElementById("icon");
+const animatedSkills = document.querySelector(".about__skills");
+const animatedElements = document.querySelectorAll(".animate");
+const navItemsWrapper = document.querySelector(".nav__items");
+const navItems = document.querySelectorAll(".nav__item");
+const hamburger = document.querySelector(".hamburger");
 
-window.onload = () => {
-  main();
-};
-
-function main() {
-  const icon = document.getElementById("icon");
-  const navItemContainer = document.querySelector(".nav__items");
-  const navItems = document.querySelectorAll(".nav__item");
-  const hamburger = document.querySelector(".hamburger");
-
-  //listener
-  icon.addEventListener("click", handleToggleTheme);
-  navItems.forEach(navItem => {
-    navItem.addEventListener("click", e => handleActiveIndicator(e.target));
-    navItem.addEventListener("mouseenter", e => showActiveIndicator(e.target));
-    navItem.addEventListener("mouseout", () => resetActiveIndicator());
-  });
-  hamburger.addEventListener("click", () =>
-    handleToggleNav(hamburger, navItemContainer)
-  );
-}
-
-const observer = (cb, section) => {
+/**
+ * @param {function} cb callback function
+ * @param {*} sectionClass section class name
+ * @returns
+ */
+const observer = (cb, sectionClass) => {
   return new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        cb(section);
+        cb(sectionClass);
       }
     });
   });
 };
 
-const handleToggleTheme = e => {
-  const bodyClass = document.body.classList;
-  bodyClass.toggle("night");
-  if (bodyClass.contains("night")) {
-    e.target.src = "./assets/images/sun.png";
+const onClickToggleTheme = event => {
+  const body = document.body.classList;
+  body.toggle("night");
+  if (body.contains("night")) {
+    event.target.src = "./assets/images/sun.png";
   } else {
-    e.target.src = "./assets/images/moon.png";
+    event.target.src = "./assets/images/moon.png";
   }
 };
 
-const handleToggleNav = (hamburger, navItem) => {
+const onClickToggleNavbar = () => {
   hamburger.classList.toggle("active");
-  navItem.classList.toggle("active");
+  navItemsWrapper.classList.toggle("active");
 };
 
-const handleActiveIndicator = navLink => {
+const onClickAddNavIndicator = event => {
   const marker = document.querySelector(".nav__marker");
   const navLinks = document.querySelectorAll(".nav__link");
+  const navLink = event.target;
 
   const offsetLeft = navLink.offsetLeft + "px";
   const offsetWidth = navLink.offsetWidth + "px";
@@ -69,8 +57,9 @@ const handleActiveIndicator = navLink => {
   navLink.classList.add("active");
 };
 
-const showActiveIndicator = navLink => {
+const onMouseEnterShowNavIndicator = event => {
   const marker = document.querySelector(".nav__marker");
+  const navLink = event.target;
 
   const offsetLeft = navLink.offsetLeft + "px";
   const offsetWidth = navLink.offsetWidth + "px";
@@ -79,13 +68,13 @@ const showActiveIndicator = navLink => {
   marker.style.width = offsetWidth;
 };
 
-const resetActiveIndicator = () => {
+const onMouseOutResetNavIndicator = () => {
   const marker = document.querySelector(".nav__marker");
   marker.style.left = activeNav[0];
   marker.style.width = activeNav[1];
 };
 
-const countNumber = () => {
+const countingSkills = () => {
   const valueDisplays = document.querySelectorAll(".count");
   let interval = 1000;
   valueDisplays.forEach(valueDisplay => {
@@ -104,12 +93,23 @@ const countNumber = () => {
   });
 };
 
-const transitionPage = section => {
+const onSectionTransition = section => {
   section.style.opacity = 1;
   section.style.transform = "translateY(0)";
   section.style.visibility = "visible";
 };
 
 //observer
-observer(countNumber, aboutSkills).observe(aboutSkills);
-animateEle.forEach(page => observer(transitionPage, page).observe(page));
+observer(countingSkills, animatedSkills).observe(animatedSkills);
+animatedElements.forEach(section =>
+  observer(onSectionTransition, section).observe(section)
+);
+
+//event listener
+darkLightToggleIcon.addEventListener("click", onClickToggleTheme);
+hamburger.addEventListener("click", onClickToggleNavbar);
+navItems.forEach(navItem => {
+  navItem.addEventListener("click", onClickAddNavIndicator);
+  navItem.addEventListener("mouseenter", onMouseEnterShowNavIndicator);
+  navItem.addEventListener("mouseout", onMouseOutResetNavIndicator);
+});
