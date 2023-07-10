@@ -1,0 +1,102 @@
+[
+  {
+    "name": "HTML",
+    "level": "Expertise",
+    "category": "language"
+  },
+  {
+    "name": "CSS/Sass",
+    "level": "Expertise",
+    "category": "language"
+  },
+  {
+    "name": "JavaScript",
+    "level": "Expertise",
+    "category": "language"
+  },
+  {
+    "name": "Typescript",
+    "level": "Comfortable",
+    "category": "language"
+  },
+  {
+    "name": "React.js",
+    "level": "Expertise",
+    "category": "framework"
+  },
+  {
+    "name": "Next.js",
+    "level": "Comfortable",
+    "category": "framework"
+  },
+  {
+    "name": "Node.js",
+    "level": "Comfortable",
+    "category": "framework"
+  },
+  {
+    "name": "Express.js",
+    "level": "Comfortable",
+    "category": "framework"
+  },
+  {
+    "name": "Bootstrap",
+    "level": "Expertise",
+    "category": "framework"
+  },
+  {
+    "name": "TailwindCss",
+    "level": "Expertise",
+    "category": "framework"
+  },
+  {
+    "name": "Mongoose",
+    "level": "Comfortable",
+    "category": "framework"
+  },
+  {
+    "name": "Git & GitHub",
+    "level": "Expertise",
+    "category": "tool"
+  },
+  {
+    "name": "Firebase Authentication",
+    "level": "Expertise",
+    "category": "tool"
+  },
+  {
+    "name": "Postman",
+    "level": "Comfortable",
+    "category": "tool"
+  },
+  {
+    "name": "NPM",
+    "level": "Comfortable",
+    "category": "tool"
+  },
+  {
+    "name": "MongoDB",
+    "level": "Comfortable",
+    "category": "tool"
+  },
+  {
+    "name": "Chrome Dev Tools",
+    "level": "Comfortable",
+    "category": "tool"
+  },
+  {
+    "name": "Stripe",
+    "level": "Comfortable",
+    "category": "tool"
+  },
+  {
+    "name": "Vercel",
+    "level": "Comfortable",
+    "category": "tool"
+  },
+  {
+    "name": "Netlify",
+    "level": "Comfortable",
+    "category": "tool"
+  }
+]

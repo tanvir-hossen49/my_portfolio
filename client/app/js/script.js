@@ -7,11 +7,29 @@ const navItemsWrapper = document.querySelector(".nav__items");
 const navItems = document.querySelectorAll(".nav__item");
 const hamburger = document.querySelector(".hamburger");
 
-/**
- * @param {function} cb callback function
- * @param {*} sectionClass section class name
- * @returns
- */
+window.onload = () => {
+  loadSkillsData();
+};
+
+//----------------FETCH DATA-----------------
+const loadSkillsData = async () => {
+  const response = await fetch("/public/skill.json");
+  const skills = await response.json();
+
+  //categoryOfSkills = {language: [skill], tool:[skill], framework: [skill]}
+  const categoryOfSkills = skills.reduce((accumulator, current) => {
+    let key = current.category;
+    if (!accumulator[key]) {
+      accumulator[key] = [];
+    }
+
+    accumulator[key].push(current.name);
+    return accumulator;
+  }, {});
+  handleSkillsData(categoryOfSkills);
+};
+
+//----------------OBSERVER-----------------
 const observer = (cb, sectionClass) => {
   return new IntersectionObserver(entries => {
     entries.forEach(entry => {
@@ -22,6 +40,7 @@ const observer = (cb, sectionClass) => {
   });
 };
 
+//---------------EVENT HANDLER---------------
 const onClickToggleTheme = event => {
   const body = document.body.classList;
   body.toggle("night");
@@ -99,13 +118,34 @@ const onSectionTransition = section => {
   section.style.visibility = "visible";
 };
 
-//observer
+const handleSkillsData = ({ language, framework, tool }) => {
+  const languagesContainer = document.querySelector(".languages-container");
+  const frameworksContainer = document.querySelector(".frameworks-container");
+  const toolsContainer = document.querySelector(".tools-container");
+
+  showSkillsData(languagesContainer, language);
+  showSkillsData(frameworksContainer, framework);
+  showSkillsData(toolsContainer, tool);
+};
+
+//---------------DOM FUNCTION---------------
+const showSkillsData = (parentElement, arr) => {
+  parentElement.innerHTML += arr
+    .map(skill => {
+      return ` <li class="skills__category-item">${skill}</li>`;
+    })
+    .join("");
+};
+
+//---------------UTILITIES---------------
+
+//---------------OBSERVER---------------
 observer(countingSkills, animatedSkills).observe(animatedSkills);
 animatedElements.forEach(section =>
   observer(onSectionTransition, section).observe(section)
 );
 
-//event listener
+//---------------EVENT LISTENER---------------
 darkLightToggleIcon.addEventListener("click", onClickToggleTheme);
 hamburger.addEventListener("click", onClickToggleNavbar);
 navItems.forEach(navItem => {
