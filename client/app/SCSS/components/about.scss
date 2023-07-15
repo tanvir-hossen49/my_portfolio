@@ -5,7 +5,6 @@
     font-size: rem(18);
 
     .link {
-      font-weight: 600;
       text-decoration: none;
       font-weight: 700;
       position: relative;
@@ -21,36 +20,37 @@
 
     .skill {
       text-transform: uppercase;
-      .count {
-        font-size: rem(52);
-        font-weight: 700;
-        color: var(--text-blue);
-      }
+    }
 
-      .verify-skill {
-        cursor: pointer;
-        font-size: rem(20);
-        font-weight: 500;
-      }
+    .count {
+      font-size: rem(52);
+      font-weight: 700;
+      color: var(--text-blue);
+    }
 
-      .verify-skill:after {
-        content: "";
-        display: inline-block;
-        transition: all 0.2s ease-in-out;
-        position: relative;
-        bottom: rem(2);
-        margin-left: rem(5);
-        background: url("../../../assets/images/arrow.png") no-repeat center;
-        transform: rotate(-45deg);
-        background-size: 100%;
-        width: rem(20);
-        height: rem(20);
-        vertical-align: middle;
-      }
+    .verify-skill {
+      cursor: pointer;
+      font-size: rem(20);
+      font-weight: 500;
+    }
 
-      .verify-skill:hover:after {
-        transform: translateX(rem(7));
-      }
+    .verify-skill:after {
+      content: "";
+      display: inline-block;
+      transition: all 0.2s ease-in-out;
+      position: relative;
+      bottom: rem(2);
+      margin-left: rem(5);
+      background: url("../../../assets/images/arrow.png") no-repeat center;
+      transform: rotate(-45deg);
+      background-size: 100%;
+      width: rem(20);
+      height: rem(20);
+      vertical-align: middle;
+    }
+
+    .verify-skill:hover:after {
+      transform: translateX(rem(7));
     }
   }
 }

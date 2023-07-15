@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap");
 *,
 :after,
 :before {
@@ -20,7 +21,6 @@ html {
   background-color: var(--app-background);
   color: var(--text-secondary);
   font-family: "Inter", sans-serif;
-  font-display: optional;
   line-height: 1.5;
   width: 100%;
 }
@@ -29,4 +29,10 @@ body.night ::selection,
 html.night ::selection {
   color: var(--selected-text);
   background: var(--selected-bg);
+}
+
+main,
+section,
+footer {
+  content-visibility: auto;
 }

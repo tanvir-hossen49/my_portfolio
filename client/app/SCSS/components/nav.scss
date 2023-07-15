@@ -8,13 +8,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: rem(50) 0;
-  border-bottom: 1px solid var(--border);
+  border-bottom: rem(1) solid var(--border);
 
   #icon {
-    width: rem(35);
     cursor: pointer;
-    margin: rem(10) 0;
+    margin: rem(10);
   }
 
   .dev-name {
@@ -41,7 +39,7 @@
       text-align: center;
       justify-content: center;
       transition: all 0.3s linear;
-      border-radius: rem(5);
+      border-radius: (rem(5));
       box-shadow: 0 rem(1) rem(5) rem(1) var(--box-shadow);
     }
 
@@ -71,7 +69,7 @@
     width: 0;
     background-color: var(--active-link);
     transition: all 500ms;
-    border-radius: rem(10);
+    border-radius: (rem(5));
 
     @include breakpoints-down(medium) {
       display: none;
@@ -86,9 +84,12 @@
       display: block;
       width: rem(25);
       height: rem(3);
-      margin: rem(5) auto;
       transition: transform 0.3s ease-in-out;
       background-color: var(--text-secondary);
+
+      &:nth-child(2) {
+        margin: rem(5) auto;
+      }
     }
 
     &.active .bar:nth-child(2) {
@@ -111,5 +112,10 @@
     justify-content: center;
     align-items: center;
     gap: rem(10);
+  }
+
+  @include breakpoints-down(medium) {
+    padding-top: rem(20);
+    padding-bottom: rem(20);
   }
 }

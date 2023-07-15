@@ -13,7 +13,7 @@ window.onload = () => {
 
 //----------------FETCH DATA-----------------
 const loadSkillsData = async () => {
-  const response = await fetch("/public/skill.json");
+  const response = await fetch("https://portfoli-server.vercel.app/skills");
   const skills = await response.json();
 
   //categoryOfSkills = {language: [skill], tool:[skill], framework: [skill]}
@@ -44,10 +44,13 @@ const observer = (cb, sectionClass) => {
 const onClickToggleTheme = event => {
   const body = document.body.classList;
   body.toggle("night");
+
   if (body.contains("night")) {
-    event.target.src = "./assets/images/sun.png";
+    event.target.src = "./assets/images/sun-moon.svg";
+    event.target.alt = "light mode";
   } else {
-    event.target.src = "./assets/images/moon.png";
+    event.target.src = "./assets/images/moon.svg";
+    event.target.alt = "dark mode";
   }
 };
 
@@ -123,21 +126,19 @@ const handleSkillsData = ({ language, framework, tool }) => {
   const frameworksContainer = document.querySelector(".frameworks-container");
   const toolsContainer = document.querySelector(".tools-container");
 
-  showSkillsData(languagesContainer, language);
-  showSkillsData(frameworksContainer, framework);
-  showSkillsData(toolsContainer, tool);
+  displaySkills(languagesContainer, language);
+  displaySkills(frameworksContainer, framework);
+  displaySkills(toolsContainer, tool);
 };
 
 //---------------DOM FUNCTION---------------
-const showSkillsData = (parentElement, arr) => {
-  parentElement.innerHTML += arr
+const displaySkills = (parentElement, skillArray) => {
+  parentElement.innerHTML += skillArray
     .map(skill => {
-      return ` <li class="skills__category-item">${skill}</li>`;
+      return `<li class="skills__category-item">${skill}</li>`;
     })
     .join("");
 };
-
-//---------------UTILITIES---------------
 
 //---------------OBSERVER---------------
 observer(countingSkills, animatedSkills).observe(animatedSkills);

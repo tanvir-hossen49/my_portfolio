@@ -36,7 +36,7 @@
     textarea {
       width: 100%;
       padding: rem(10);
-      border-radius: rem(5);
+      border-radius: (rem(5));
       outline: none;
       color: var(--text-secondary);
       background-color: var(--app-background);
@@ -55,10 +55,12 @@
       text-transform: uppercase;
       transition: all 0.3s ease;
       font-size: rem(16);
+      cursor: pointer;
 
       &:hover {
         background: var(--text-blue);
         color: var(--text-white);
+        border: rem(2) transparent;
       }
 
       @include breakpoints-down(medium) {
