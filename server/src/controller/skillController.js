@@ -3,8 +3,7 @@ const createError = require("http-errors");
 
 const getSkills = async (_req, res, next) => {
   try {
-    const query = { name: "HTM" };
-    const skill = await skillModel.find(query);
+    const skill = await skillModel.find();
 
     if (typeof skill !== "undefined" && skill.length === 0) {
       throw createError(404, "skill not found");
