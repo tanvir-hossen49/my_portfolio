@@ -9,11 +9,12 @@ const hamburger = document.querySelector(".hamburger");
 
 window.onload = () => {
   loadSkillsData();
+  loadProjectsData();
 };
 
 //----------------FETCH DATA-----------------
 const loadSkillsData = async () => {
-  const response = await fetch("https://portfoli-server.vercel.app/skills");
+  const response = await fetch("./data/skills.json");
   const skills = await response.json();
 
   //categoryOfSkills = {language: [skill], tool:[skill], framework: [skill]}
@@ -27,6 +28,16 @@ const loadSkillsData = async () => {
     return accumulator;
   }, {});
   handleSkillsData(categoryOfSkills);
+};
+
+const loadProjectsData = async () => {
+  try {
+    const response = await fetch("./data/projects.json");
+    const projects = await response.json();
+    displayProjects(projects);
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 //----------------OBSERVER-----------------
@@ -136,6 +147,57 @@ const displaySkills = (parentElement, skillArray) => {
   parentElement.innerHTML += skillArray
     .map(skill => {
       return `<li class="skills__category-item">${skill}</li>`;
+    })
+    .join("");
+};
+
+const displayProjects = projects => {
+  const projectContent = document.getElementById("project__content");
+  console.log(projects, projectContent);
+  projectContent.innerHTML += projects
+    .map(project => {
+      return `<div class="project">
+        <div class="project__img">
+          <img src=${project.image} alt=${project.image} loading="lazy" />
+        </div>
+        <div class="project__name">
+          <h4>${project.name}</h4>
+        </div>
+        <div class="project__technologies">
+          <ul>
+            <li>React</li>
+            <li>Tailwind</li>
+            <li>Node</li>
+            <li>Express</li>
+            <li>Firebase</li>
+            <li>Stripe</li>
+            <li>ReactQuery</li>
+            <li>MongoDB</li>
+          </ul>
+        </div>
+        <div class="project__description">
+          <p>
+           ${project.description}
+          </p>
+        </div>
+        <div class="project__button">
+          <a
+            href="https://github.com/tanvir-hossen49/sunnah-camp-client.git"
+            target="_blank"
+          >
+            Client code
+          </a>
+          <a
+            href="https://github.com/tanvir-hossen49/sunnah-camp-server.git"
+            target="_blank"
+          >
+            server code
+          </a>
+          <a href="https://summer-camp-eac1c.web.app" target="_blank">
+            live site
+          </a>
+        </div>
+      </div>`;
     })
     .join("");
 };
