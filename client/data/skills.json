@@ -1,160 +1,186 @@
-[{
-  "_id": {
-    "$oid": "64ac51e1d7dbb5c241872442"
+[
+  {
+    "_id": {
+      "$oid": "64ac51e1d7dbb5c241872442"
+    },
+    "name": "Next.js",
+    "level": "comfortable",
+    "category": "framework"
   },
-  "name": "Next.js",
-  "level": "comfortable",
-  "category": "framework"
-},
-{
-  "_id": {
-    "$oid": "64ac51e1d7dbb5c24187243e"
+  {
+    "_id": {
+      "$oid": "64ac51e1d7dbb5c24187243e"
+    },
+    "name": "CSS/Sass",
+    "level": "expertise",
+    "category": "language"
   },
-  "name": "CSS/Sass",
-  "level": "expertise",
-  "category": "language"
-},
-{
-  "_id": {
-    "$oid": "64ac51e1d7dbb5c241872444"
+  {
+    "_id": {
+      "$oid": "64ac51e1d7dbb5c241872444"
+    },
+    "name": "Express.js",
+    "level": "comfortable",
+    "category": "framework"
   },
-  "name": "Express.js",
-  "level": "comfortable",
-  "category": "framework"
-},
-{
-  "_id": {
-    "$oid": "64ac51e1d7dbb5c241872440"
+  {
+    "_id": {
+      "$oid": "64ac51e1d7dbb5c241872440"
+    },
+    "name": "Typescript",
+    "level": "comfortable",
+    "category": "language"
   },
-  "name": "Typescript",
-  "level": "comfortable",
-  "category": "language"
-},
-{
-  "_id": {
-    "$oid": "64ac51e1d7dbb5c24187243d"
+  {
+    "_id": {
+      "$oid": "64ac51e1d7dbb5c24187243d"
+    },
+    "name": "HTML",
+    "level": "expertise",
+    "category": "language"
   },
-  "name": "HTML",
-  "level": "expertise",
-  "category": "language"
-},
-{
-  "_id": {
-    "$oid": "64ac51e1d7dbb5c241872447"
+  {
+    "_id": {
+      "$oid": "64ac51e1d7dbb5c241872447"
+    },
+    "name": "Mongoose",
+    "level": "comfortable",
+    "category": "framework"
   },
-  "name": "Mongoose",
-  "level": "comfortable",
-  "category": "framework"
-},
-{
-  "_id": {
-    "$oid": "64ac51e1d7dbb5c24187244e"
+  {
+    "_id": {
+      "$oid": "64ac51e1d7dbb5c24187244e"
+    },
+    "name": "Stripe",
+    "level": "comfortable",
+    "category": "tool"
   },
-  "name": "Stripe",
-  "level": "comfortable",
-  "category": "tool"
-},
-{
-  "_id": {
-    "$oid": "64ac51e1d7dbb5c24187244a"
+  {
+    "_id": {
+      "$oid": "64ac51e1d7dbb5c24187244a"
+    },
+    "name": "Postman",
+    "level": "comfortable",
+    "category": "tool"
   },
-  "name": "Postman",
-  "level": "comfortable",
-  "category": "tool"
-},
-{
-  "_id": {
-    "$oid": "64ac51e1d7dbb5c24187243f"
+  {
+    "_id": {
+      "$oid": "64ac51e1d7dbb5c24187243f"
+    },
+    "name": "JavaScript",
+    "level": "expertise",
+    "category": "language"
   },
-  "name": "JavaScript",
-  "level": "expertise",
-  "category": "language"
-},
-{
-  "_id": {
-    "$oid": "64ac51e1d7dbb5c241872450"
+  {
+    "_id": {
+      "$oid": "64ac51e1d7dbb5c241872450"
+    },
+    "name": "Netlify",
+    "level": "comfortable",
+    "category": "tool"
   },
-  "name": "Netlify",
-  "level": "comfortable",
-  "category": "tool"
-},
-{
-  "_id": {
-    "$oid": "64ac51e1d7dbb5c241872441"
+  {
+    "_id": {
+      "$oid": "64ac51e1d7dbb5c241872441"
+    },
+    "name": "React.js",
+    "level": "expertise",
+    "category": "framework"
   },
-  "name": "React.js",
-  "level": "expertise",
-  "category": "framework"
-},
-{
-  "_id": {
-    "$oid": "64ac51e1d7dbb5c24187244c"
+  {
+    "_id": {
+      "$oid": "64ac51e1d7dbb5c24187244c"
+    },
+    "name": "MongoDB",
+    "level": "comfortable",
+    "category": "tool"
   },
-  "name": "MongoDB",
-  "level": "comfortable",
-  "category": "tool"
-},
-{
-  "_id": {
-    "$oid": "64ac51e1d7dbb5c241872445"
+  {
+    "_id": {
+      "$oid": "64ac51e1d7dbb5c241872445"
+    },
+    "name": "Bootstrap",
+    "level": "expertise",
+    "category": "framework"
   },
-  "name": "Bootstrap",
-  "level": "expertise",
-  "category": "framework"
-},
-{
-  "_id": {
-    "$oid": "64ac51e1d7dbb5c241872443"
+  {
+    "_id": {
+      "$oid": "64ac51e1d7dbb5c241872443"
+    },
+    "name": "Node.js",
+    "level": "comfortable",
+    "category": "framework"
   },
-  "name": "Node.js",
-  "level": "comfortable",
-  "category": "framework"
-},
-{
-  "_id": {
-    "$oid": "64ac51e1d7dbb5c241872448"
+  {
+    "_id": {
+      "$oid": "64ac51e1d7dbb5c241872448"
+    },
+    "name": "Git & GitHub",
+    "level": "expertise",
+    "category": "tool"
   },
-  "name": "Git & GitHub",
-  "level": "expertise",
-  "category": "tool"
-},
-{
-  "_id": {
-    "$oid": "64ac51e1d7dbb5c24187244d"
+  {
+    "_id": {
+      "$oid": "64ac51e1d7dbb5c24187244d"
+    },
+    "name": "Chrome Dev Tools",
+    "level": "comfortable",
+    "category": "tool"
   },
-  "name": "Chrome Dev Tools",
-  "level": "comfortable",
-  "category": "tool"
-},
-{
-  "_id": {
-    "$oid": "64ac51e1d7dbb5c24187244f"
+  {
+    "_id": {
+      "$oid": "64ac51e1d7dbb5c24187244f"
+    },
+    "name": "Vercel",
+    "level": "comfortable",
+    "category": "tool"
   },
-  "name": "Vercel",
-  "level": "comfortable",
-  "category": "tool"
-},
-{
-  "_id": {
-    "$oid": "64ac51e1d7dbb5c241872449"
+  {
+    "_id": {
+      "$oid": "64ac51e1d7dbb5c241872449"
+    },
+    "name": "Firebase Authentication",
+    "level": "expertise",
+    "category": "tool"
   },
-  "name": "Firebase Authentication",
-  "level": "expertise",
-  "category": "tool"
-},
-{
-  "_id": {
-    "$oid": "64ac51e1d7dbb5c24187244b"
+  {
+    "_id": {
+      "$oid": "64ac51e1d7dbb5c24187244b"
+    },
+    "name": "NPM",
+    "level": "comfortable",
+    "category": "tool"
   },
-  "name": "NPM",
-  "level": "comfortable",
-  "category": "tool"
-},
-{
-  "_id": {
-    "$oid": "64ac51e1d7dbb5c241872446"
+  {
+    "_id": {
+      "$oid": "64ac51e1d7dbb5c241872446"
+    },
+    "name": "TailwindCss",
+    "level": "expertise",
+    "category": "framework"
   },
-  "name": "TailwindCss",
-  "level": "expertise",
-  "category": "framework"
-}]
+  {
+    "_id": {
+      "$oid": "64ac51e1d7dbb5c241872558"
+    },
+    "name": "My SQL",
+    "level": "familiar",
+    "category": "tool"
+  },
+  {
+    "_id": {
+      "$oid": "64ac51e1d7dbb5c241875846"
+    },
+    "name": "Redux",
+    "level": "familiar",
+    "category": "framework"
+  },
+  {
+    "_id": {
+      "$oid": "64ac51e1d7dbb5c241875481"
+    },
+    "name": "Json web token",
+    "level": "expertise",
+    "category": "tool"
+  }
+]

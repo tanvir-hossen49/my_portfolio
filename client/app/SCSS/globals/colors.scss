@@ -9,9 +9,10 @@
   --box-shadow: hsla(0, 0%, 0%, 0.2);
   --border: hsl(220, 13%, 91%);
   --text-white: hsl(0, 0%, 95%);
+  --cursor: #ececec;
 }
 body.night {
-  --app-background: hsl(222, 27%, 12%);
+  --app-background: rgb(15 23 42);
   --text-secondary: hsl(240, 11%, 72%);
   --text-primary: hsl(0, 0%, 91%);
   --active-link: hsl(167, 100%, 33%);

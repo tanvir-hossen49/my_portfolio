@@ -5,7 +5,11 @@
   flex-direction: column;
   align-items: start;
   justify-content: center;
-  height: calc(100vh - rem(60));
+  height: 500px;
+  
+  @include breakpoints(large) {
+    height: calc(100vh - rem(60));
+  }
 
   &__hello {
     opacity: 0;

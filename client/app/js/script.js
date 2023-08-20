@@ -4,22 +4,36 @@ const darkLightToggleIcon = document.getElementById("icon");
 const animatedSkills = document.querySelector(".about__skills");
 const animatedElements = document.querySelectorAll(".animate");
 const navItemsWrapper = document.querySelector(".nav__items");
-const navItems = document.querySelectorAll(".nav__item");
+const navContainer = document.querySelector(".nav__items");
 const hamburger = document.querySelector(".hamburger");
+const form = document.querySelector("form.form");
+const checkBoxContainer = document.querySelector(".skills__filter");
+const checkBoxes = document.querySelectorAll(".input-filter-checkbox");
+const toast = document.querySelector(".toastMessage");
 
 window.onload = () => {
   loadSkillsData();
   loadProjectsData();
+  hideFilterOnMobile();
 };
 
 //----------------FETCH DATA-----------------
-const loadSkillsData = async () => {
+const loadSkillsData = async (level = false) => {
   const response = await fetch("./data/skills.json");
-  const skills = await response.json();
+  const data = await response.json();
+
+  const skills = level
+    ? data.filter(
+        skill =>
+          skill.level === level?.[0] ||
+          skill.level === level?.[1] ||
+          skill.level === level?.[3]
+      )
+    : data;
 
   //categoryOfSkills = {language: [skill], tool:[skill], framework: [skill]}
-  const categoryOfSkills = skills.reduce((accumulator, current) => {
-    let key = current.category;
+  const categoryOfSkills = skills?.reduce((accumulator, current) => {
+    let key = current?.category;
     if (!accumulator[key]) {
       accumulator[key] = [];
     }
@@ -71,6 +85,11 @@ const onClickToggleNavbar = () => {
 };
 
 const onClickAddNavIndicator = event => {
+  // in mobile device when user click a link then navbar will be hide
+  if (isMobile()) {
+    onClickToggleNavbar();
+  }
+
   const marker = document.querySelector(".nav__marker");
   const navLinks = document.querySelectorAll(".nav__link");
   const navLink = event.target;
@@ -93,6 +112,8 @@ const onClickAddNavIndicator = event => {
 const onMouseEnterShowNavIndicator = event => {
   const marker = document.querySelector(".nav__marker");
   const navLink = event.target;
+
+  console.log(navLink);
 
   const offsetLeft = navLink.offsetLeft + "px";
   const offsetWidth = navLink.offsetWidth + "px";
@@ -137,15 +158,88 @@ const handleSkillsData = ({ language, framework, tool }) => {
   const frameworksContainer = document.querySelector(".frameworks-container");
   const toolsContainer = document.querySelector(".tools-container");
 
+  // reset previous list
+  languagesContainer.innerHTML = "";
+  frameworksContainer.innerHTML = "";
+  toolsContainer.innerHTML = "";
+
   displaySkills(languagesContainer, language);
   displaySkills(frameworksContainer, framework);
   displaySkills(toolsContainer, tool);
 };
 
+const onContactFormSubmit = async event => {
+  event.preventDefault();
+
+  const formData = event.target;
+
+  const name = formData.name.value;
+  const email = formData.email.value;
+  const message = formData.message.value;
+  const subject = formData.subject.value;
+
+  const mailInfo = {
+    name,
+    email,
+    message,
+    subject,
+  };
+
+  try {
+    const response = await fetch("https://server-ebon-delta.vercel.app/send", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(mailInfo),
+    });
+    await response.json();
+
+    toast.style.display = "block";
+    toast.innerText = `${name} your form Submitted successful`;
+
+    formData.reset();
+  } catch (error) {
+    toast.style.display = "block";
+    toast.innerText = error.message;
+
+    console.log("Error: sending contact info error", error);
+  }
+
+  // after 3s toast message is remove
+  setTimeout(() => {
+    toast.style.display = "none";
+    toast.innerText = "";
+  }, 3000);
+};
+
+const hideFilterOnMobile = () => {
+  const filterSkilledContainer = document.querySelector(".skills__filter");
+  if (isMobile()) {
+    filterSkilledContainer.style.display = "none";
+  }
+};
+
+const filteredSkills = () => {
+  const isChecked = [];
+
+  [...checkBoxes].forEach(checkBox => {
+    if (checkBox.checked) {
+      isChecked.push(checkBox.value);
+    }
+  });
+
+  loadSkillsData(isChecked);
+};
+
 //---------------DOM FUNCTION---------------
 const displaySkills = (parentElement, skillArray) => {
+  if (!skillArray) {
+    return (parentElement.innerHTML = `<li class="skills__category-item">No data found</li>`);
+  }
+
   parentElement.innerHTML += skillArray
-    .map(skill => {
+    ?.map(skill => {
       return `<li class="skills__category-item">${skill}</li>`;
     })
     .join("");
@@ -153,47 +247,58 @@ const displaySkills = (parentElement, skillArray) => {
 
 const displayProjects = projects => {
   const projectContent = document.getElementById("project__content");
-  console.log(projects, projectContent);
+
   projectContent.innerHTML += projects
     .map(project => {
+      const {
+        image,
+        name,
+        technologies,
+        description,
+        codeLink,
+        productionLink,
+      } = project;
       return `<div class="project">
         <div class="project__img">
-          <img src=${project.image} alt=${project.image} loading="lazy" />
+          <img src=${image} alt="${name}" loading="lazy"/>
         </div>
         <div class="project__name">
-          <h4>${project.name}</h4>
+          <h4>${name}</h4>
         </div>
         <div class="project__technologies">
           <ul>
-            <li>React</li>
-            <li>Tailwind</li>
-            <li>Node</li>
-            <li>Express</li>
-            <li>Firebase</li>
-            <li>Stripe</li>
-            <li>ReactQuery</li>
-            <li>MongoDB</li>
+            ${technologies.map(technology => `<li>${technology}</li>`).join("")}
           </ul>
         </div>
         <div class="project__description">
           <p>
-           ${project.description}
+           ${description}
           </p>
         </div>
         <div class="project__button">
-          <a
-            href="https://github.com/tanvir-hossen49/sunnah-camp-client.git"
+        ${
+          codeLink?.client
+            ? `<a
+          href="${codeLink?.client}"
+          target="_blank"
+        >
+         Client link
+        </a>`
+            : ""
+        }
+
+          ${
+            codeLink?.server
+              ? `<a
+            href="${codeLink?.server}"
             target="_blank"
           >
-            Client code
-          </a>
-          <a
-            href="https://github.com/tanvir-hossen49/sunnah-camp-server.git"
-            target="_blank"
-          >
-            server code
-          </a>
-          <a href="https://summer-camp-eac1c.web.app" target="_blank">
+           Server link
+          </a>`
+              : ""
+          }
+
+          <a href='${productionLink}' target="_blank">
             live site
           </a>
         </div>
@@ -202,6 +307,9 @@ const displayProjects = projects => {
     .join("");
 };
 
+//----------------UTILITIES----------------
+const isMobile = () => window.innerWidth <= 640;
+
 //---------------OBSERVER---------------
 observer(countingSkills, animatedSkills).observe(animatedSkills);
 animatedElements.forEach(section =>
@@ -209,10 +317,10 @@ animatedElements.forEach(section =>
 );
 
 //---------------EVENT LISTENER---------------
+checkBoxContainer.addEventListener("change", filteredSkills);
+form.addEventListener("submit", onContactFormSubmit);
 darkLightToggleIcon.addEventListener("click", onClickToggleTheme);
 hamburger.addEventListener("click", onClickToggleNavbar);
-navItems.forEach(navItem => {
-  navItem.addEventListener("click", onClickAddNavIndicator);
-  navItem.addEventListener("mouseenter", onMouseEnterShowNavIndicator);
-  navItem.addEventListener("mouseout", onMouseOutResetNavIndicator);
-});
+navContainer.addEventListener("click", onClickAddNavIndicator);
+navContainer.addEventListener("mouseenter", onMouseEnterShowNavIndicator, true);
+navContainer.addEventListener("mouseout", onMouseOutResetNavIndicator);

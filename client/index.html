@@ -20,7 +20,7 @@
     <!-- JAVASCRIPT -->
     <script src="./dist/script.js" defer></script>
     <!-- CSS -->
-    <link rel="stylesheet" href="./dist/style.css" />
+    <link rel="stylesheet" href="./dist/style.css" defer />
   </head>
 
   <body>
@@ -35,7 +35,9 @@
         <li class="nav__item">
           <a href="#" class="nav__link active">Home</a>
         </li>
-        <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
+        <li class="nav__item">
+          <a href="#about" class="nav__link">About</a>
+        </li>
         <li class="nav__item">
           <a href="#project" class="nav__link">Projects</a>
         </li>
@@ -45,7 +47,13 @@
       </ul>
 
       <div class="nav__last-child">
-        <img id="icon" src="./assets/images/moon.svg" alt="night mode" />
+        <img
+          id="icon"
+          width="28"
+          height="28"
+          src="./assets/images/moon.svg"
+          alt="night mode"
+        />
 
         <div class="hamburger">
           <span class="bar"></span>
@@ -55,6 +63,10 @@
       </div>
     </nav>
     <!--NAV END -->
+
+    <!-- toast container start-->
+    <div class="toastMessage"></div>
+    <!-- toast container end-->
 
     <main>
       <!-- INTRO SECTION START -->
@@ -69,10 +81,10 @@
         </h2>
         <h3 class="intro__contact">
           <a
-            href="https://doc-14-28-docs.googleusercontent.com/docs/securesc/hmiri8te27i6pnj4juj89v3kts1jsqm9/e1oeh79d1di9gp8f6tqi4t51583fkosg/1689008550000/00672012647293792641/00672012647293792641/1uZEIrZhNxpKNafdg6FfM8rmMm8IfmurH?e=download&ax=AGtFMPXeT2a_Cz2h2MnsC4NkHUDGhEjiJJ1-tLmqi5Ixn4OnzSHYCePRJrjyu1CYbjBjrxy09Az5KlIHIXYtJaheR0hxmw9L_Fe9QK4nd4WYV9y6rswCbQdIzP4L-OAw8bLtoLGazVEMx0t8cM2G46EPhrpt7SGnkI8Oy1JmS7ju7E_l62bAry3ioRZUNpNHw2ERsQ2YZMR7V39V9B9e19nlew_8-J9yDywSGKLnGqJ5FPOJgCdk_B7y6rJOzfqSesh8kxhzF-c8-066KGdk4lv61tFcX0mEOMvEzZV93TkGWdh3VvHrA8DyEc306N5giz-oROJyLXckU8Pgkjr5HwxB9ZidpQOvYW4dmLZMQtV0a-ISf7AoFIbosCjDpZeSqdcOS4cjNSGakIB4MRCmI4J0MwNFqpozFp4-ihZZko4f8Ps5eHRxNA70DaTOQJWqmgWM9ZDwk4E89hnZvQhTSUIHfB6fIYCU1siXwZJetP_WRRqNyPJGRZPsnGS1DAJ9aYAL5Pe2Rr-gD8MdX32pN09qQ3cJ3RED7GDsaO4CRS8iL-j2Q4wSZS-PojU7lFe0mDCv2WaEUHJCNHFE5iyv7DXkCToZdUxTsWEvhIKkynIfWPEr5E04PeJc3cQMSN-xoqCAv7Ogo99tw6b9HMmFYdKqIII30gEht-4yeIVkxmDeEf4woY9wZDabjzlskcpJOQFBhyoXIObdvxmsO_gYjuZ0xx7IA_Hf9vLhT6Bs1Wb2tTXePvqRXLATCB3aegjVvDSavD0eNV7cCH-G29xEJxlizRCTprJphMZSwtFQPxWj8SRAp3VnG8fKFBStP92OMYqK1fPyWEPpsAMD-trskHsAUvdJkijRRNbb0HlgV8MbA4TrTRLVVe_lq9HoPLbMhWxful5JqaFDsg7SO1KKkmDd-_8aSulixQff_VNEpmBMVybywTDxH2qx2K8c4-5XdVRG9G62xvo&uuid=aeceaef6-f69b-41c2-b21e-8dc803602649&authuser=0"
+            href="https://drive.google.com/file/d/1DqS6EWfx_XTfxoZYCK_vPywiXukvAo13/view?usp=drive_link"
             class="download-resume"
-            target="_blank"
             title="download-resume"
+            target="_blank"
           >
             Download Resume
           </a>
@@ -223,7 +235,7 @@
 
           <div class="resume">
             <a
-              href="https://drive.google.com/file/d/1uZEIrZhNxpKNafdg6FfM8rmMm8IfmurH/view?fbclid=IwAR0Nrn1gX75rDbPRntUwcuPB5aQg4QESq1BbahT70tmJng8xH3zyX0IDfo4"
+              href="https://drive.google.com/file/d/1DqS6EWfx_XTfxoZYCK_vPywiXukvAo13/view?usp=drive_link"
               class="arrow-link"
               target="_blank"
             >
@@ -235,8 +247,47 @@
       <!-- ABOUT SECTION END -->
 
       <!-- SKILL SECTION START -->
-      <section class="container section" id="skills">
-        <div class="section__title">skill</div>
+      <section class="container section animate" id="skills">
+        <div class="section__title">
+          skill
+
+          <div class="skills__filter">
+            Filter:
+            <div>
+              <label for="expertise">Expertise</label>
+              <input
+                class="input-filter-checkbox"
+                type="checkbox"
+                name="expertise"
+                value="expertise"
+                id="expertise"
+                checked
+              />
+            </div>
+            <div>
+              <label for="comportable">Comfortable</label>
+              <input
+                class="input-filter-checkbox"
+                type="checkbox"
+                name="comfortable"
+                value="comfortable"
+                id="comportable"
+                checked
+              />
+            </div>
+            <div>
+              <label for="familiar">Familiar</label>
+              <input
+                class="input-filter-checkbox"
+                type="checkbox"
+                name="familiar"
+                value="familiar"
+                id="familiar"
+                checked
+              />
+            </div>
+          </div>
+        </div>
         <div class="section__content">
           <div class="skills">
             <div class="skills__category">
@@ -259,7 +310,7 @@
       <!-- SKILL SECTION END -->
 
       <!-- PROJECT SECTION START -->
-      <section class="container projects section" id="project">
+      <section class="container projects section animate" id="project">
         <div class="section__title">Projects</div>
         <div class="section__content" id="project__content"></div>
       </section>
@@ -285,6 +336,11 @@
               <div class="form__control">
                 <label for="email">Email</label>
                 <input type="email" class="email" id="email" required />
+              </div>
+              <!-- subject -->
+              <div class="form__control">
+                <label for="subject">Subject</label>
+                <input type="subject" class="subject" id="subject" required />
               </div>
               <!-- Message -->
               <div class="form__control">

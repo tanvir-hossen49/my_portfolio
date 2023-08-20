@@ -1,0 +1,26 @@
+@use "../util/" as *;
+
+.toastMessage {
+  position: fixed;
+  top: rem(70);
+  right: rem(20);
+  border: rem(1) solid var(--text-primary);
+  padding: rem(5) rem(15);
+  display: none;
+  z-index: 999;
+  transition: all 0.3s linear;
+  color: var(--text-primary);
+  background-color: var(--app-background);
+  border-radius: rem(5);
+  animation: animate-in 0.5s ease-in;
+}
+@keyframes animate-in {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
