@@ -1,47 +1,75 @@
 // Global variables
 let activeNav = ["0px", "51px"]; //[offsetLeft,offsetWidth ]
-const darkLightToggleIcon = document.getElementById("icon");
-const animatedSkills = document.querySelector(".about__skills");
-const animatedElements = document.querySelectorAll(".animate");
-const navItemsWrapper = document.querySelector(".nav__items");
-const navContainer = document.querySelector(".nav__items");
-const hamburger = document.querySelector(".hamburger");
-const form = document.querySelector("form.form");
-const checkBoxContainer = document.querySelector(".skills__filter");
-const checkBoxes = document.querySelectorAll(".input-filter-checkbox");
-const toast = document.querySelector(".toastMessage");
+const ICON_URLS = {
+  lightMode: "./assets/images/sun-moon.svg",
+  darkMode: "./assets/images/moon.svg",
+};
+const ACTIVE_CLASS = "active";
 
+// Entry point when the window loads
 window.onload = () => {
+  main();
   loadSkillsData();
   loadProjectsData();
   hideFilterOnMobile();
 };
 
+// main is a boot function that initializes the page
+const main = () => {
+  // dom references
+  const darkLightToggleIcon = document.getElementById("icon");
+  const animatedSkills = document.querySelector(".about__skills");
+  const animatedElements = document.querySelectorAll(".animate");
+  const navContainer = document.querySelector(".nav__items");
+  const hamburger = document.querySelector(".hamburger");
+  const form = document.querySelector("form.form");
+  const checkBoxContainer = document.querySelector(".skills__filter");
+
+  // Set up IntersectionObservers for animated sections
+  observer(countingSkills, animatedSkills).observe(animatedSkills);
+  animatedElements.forEach(section =>
+    observer(sectionTransition, section).observe(section)
+  );
+
+  //---------------EVENT LISTENER---------------
+  checkBoxContainer.addEventListener("change", filteredSkills);
+  form.addEventListener("submit", submitContactForm);
+  darkLightToggleIcon.addEventListener("click", toggleTheme);
+  hamburger.addEventListener("click", toggleNavbar);
+  navContainer.addEventListener("click", addNavIndicator);
+  navContainer.addEventListener("mouseout", resetNavIndicator);
+  navContainer.addEventListener("mouseenter",showNavIndicator,true) // active event delegation);
+};
+
 //----------------FETCH DATA-----------------
-const loadSkillsData = async (level = false) => {
-  const response = await fetch("./data/skills.json");
-  const data = await response.json();
+const loadSkillsData = async level => {
+  try {
+    const response = await fetch("./data/skills.json");
+    const data = await response.json();
 
-  const skills = level
-    ? data.filter(
-        skill =>
-          skill.level === level?.[0] ||
-          skill.level === level?.[1] ||
-          skill.level === level?.[3]
-      )
-    : data;
+    const skills = level
+      ? data.filter(
+          skill =>
+            skill.level === level?.[0] ||
+            skill.level === level?.[1] ||
+            skill.level === level?.[2]
+        )
+      : data;
 
-  //categoryOfSkills = {language: [skill], tool:[skill], framework: [skill]}
-  const categoryOfSkills = skills?.reduce((accumulator, current) => {
-    let key = current?.category;
-    if (!accumulator[key]) {
-      accumulator[key] = [];
-    }
+    //categoryOfSkills = {language: [skill], tool:[skill], framework: [skill]}
+    const categoryOfSkills = skills?.reduce((accumulator, current) => {
+      let key = current?.category;
+      if (!accumulator[key]) {
+        accumulator[key] = [];
+      }
 
-    accumulator[key].push(current.name);
-    return accumulator;
-  }, {});
-  handleSkillsData(categoryOfSkills);
+      accumulator[key].push(current.name);
+      return accumulator;
+    }, {});
+    handleSkillsData(categoryOfSkills);
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 const loadProjectsData = async () => {
@@ -54,40 +82,44 @@ const loadProjectsData = async () => {
   }
 };
 
-//----------------OBSERVER-----------------
-const observer = (cb, sectionClass) => {
+//helper: create an IntersectionObserver
+const observer = (callback, sectionClass) => {
   return new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        cb(sectionClass);
+        callback(sectionClass);
       }
     });
   });
 };
 
 //---------------EVENT HANDLER---------------
-const onClickToggleTheme = event => {
+const toggleTheme = event => {
   const body = document.body.classList;
+  const icon = event.target;
+
   body.toggle("night");
 
   if (body.contains("night")) {
-    event.target.src = "./assets/images/sun-moon.svg";
-    event.target.alt = "light mode";
+    icon.src = ICON_URLS.lightMode;
+    icon.alt = "light mode";
   } else {
-    event.target.src = "./assets/images/moon.svg";
-    event.target.alt = "dark mode";
+    icon.src = ICON_URLS.darkMode;
+    icon.alt = "dark mode";
   }
 };
 
-const onClickToggleNavbar = () => {
-  hamburger.classList.toggle("active");
-  navItemsWrapper.classList.toggle("active");
+const toggleNavbar = event => {
+  const navItemsWrapper = document.querySelector(".nav__items");
+
+  event.target.classList.toggle(ACTIVE_CLASS);
+  navItemsWrapper.classList.toggle(ACTIVE_CLASS);
 };
 
-const onClickAddNavIndicator = event => {
+const addNavIndicator = event => {
   // in mobile device when user click a link then navbar will be hide
   if (isMobile()) {
-    onClickToggleNavbar();
+    toggleNavbar(event);
   }
 
   const marker = document.querySelector(".nav__marker");
@@ -103,17 +135,16 @@ const onClickAddNavIndicator = event => {
   activeNav = [offsetLeft, offsetWidth];
 
   navLinks.forEach(link => {
-    link.classList.contains("active") && link.classList.remove("active");
+    link.classList.contains(ACTIVE_CLASS) &&
+      link.classList.remove(ACTIVE_CLASS);
   });
 
-  navLink.classList.add("active");
+  navLink.classList.add(ACTIVE_CLASS);
 };
 
-const onMouseEnterShowNavIndicator = event => {
+const showNavIndicator = event => {
   const marker = document.querySelector(".nav__marker");
   const navLink = event.target;
-
-  console.log(navLink);
 
   const offsetLeft = navLink.offsetLeft + "px";
   const offsetWidth = navLink.offsetWidth + "px";
@@ -122,16 +153,16 @@ const onMouseEnterShowNavIndicator = event => {
   marker.style.width = offsetWidth;
 };
 
-const onMouseOutResetNavIndicator = () => {
+const resetNavIndicator = () => {
   const marker = document.querySelector(".nav__marker");
   marker.style.left = activeNav[0];
   marker.style.width = activeNav[1];
 };
 
 const countingSkills = () => {
-  const valueDisplays = document.querySelectorAll(".count");
+  const countElements = document.querySelectorAll(".count");
   let interval = 1000;
-  valueDisplays.forEach(valueDisplay => {
+  countElements.forEach(valueDisplay => {
     let startValue = 0;
     let endValue = parseInt(valueDisplay.getAttribute("data-val"));
 
@@ -147,7 +178,7 @@ const countingSkills = () => {
   });
 };
 
-const onSectionTransition = section => {
+const sectionTransition = section => {
   section.style.opacity = 1;
   section.style.transform = "translateY(0)";
   section.style.visibility = "visible";
@@ -168,9 +199,10 @@ const handleSkillsData = ({ language, framework, tool }) => {
   displaySkills(toolsContainer, tool);
 };
 
-const onContactFormSubmit = async event => {
+const submitContactForm = async event => {
   event.preventDefault();
 
+  const toast = document.querySelector(".toastMessage");
   const formData = event.target;
 
   const name = formData.name.value;
@@ -193,12 +225,14 @@ const onContactFormSubmit = async event => {
       },
       body: JSON.stringify(mailInfo),
     });
-    await response.json();
-
-    toast.style.display = "block";
-    toast.innerText = `${name} your form Submitted successful`;
-
-    formData.reset();
+    if (response.ok) {
+      toast.style.display = "block";
+      toast.innerText = `${name}, your form was submitted successfully.`;
+      // Clear form fields
+      formData.reset();
+    } else {
+      throw new Error("Submission failed.");
+    }
   } catch (error) {
     toast.style.display = "block";
     toast.innerText = error.message;
@@ -220,7 +254,9 @@ const hideFilterOnMobile = () => {
   }
 };
 
+//filtering skills based on checkboxes
 const filteredSkills = () => {
+  const checkBoxes = document.querySelectorAll(".input-filter-checkbox");
   const isChecked = [];
 
   [...checkBoxes].forEach(checkBox => {
@@ -235,14 +271,19 @@ const filteredSkills = () => {
 //---------------DOM FUNCTION---------------
 const displaySkills = (parentElement, skillArray) => {
   if (!skillArray) {
-    return (parentElement.innerHTML = `<li class="skills__category-item">No data found</li>`);
+    // Use textContent to insert plain text
+    parentElement.appendChild(document.createTextNode("No data found"));
+    return;
   }
 
-  parentElement.innerHTML += skillArray
-    ?.map(skill => {
-      return `<li class="skills__category-item">${skill}</li>`;
-    })
-    .join("");
+  skillArray?.forEach(skill => {
+    const skillItem = document.createElement("li");
+    skillItem.className = "skills__category-item";
+    skillItem.textContent = skill;
+
+    // Append the skill item to the parent element
+    parentElement.appendChild(skillItem);
+  });
 };
 
 const displayProjects = projects => {
@@ -309,18 +350,3 @@ const displayProjects = projects => {
 
 //----------------UTILITIES----------------
 const isMobile = () => window.innerWidth <= 640;
-
-//---------------OBSERVER---------------
-observer(countingSkills, animatedSkills).observe(animatedSkills);
-animatedElements.forEach(section =>
-  observer(onSectionTransition, section).observe(section)
-);
-
-//---------------EVENT LISTENER---------------
-checkBoxContainer.addEventListener("change", filteredSkills);
-form.addEventListener("submit", onContactFormSubmit);
-darkLightToggleIcon.addEventListener("click", onClickToggleTheme);
-hamburger.addEventListener("click", onClickToggleNavbar);
-navContainer.addEventListener("click", onClickAddNavIndicator);
-navContainer.addEventListener("mouseenter", onMouseEnterShowNavIndicator, true);
-navContainer.addEventListener("mouseout", onMouseOutResetNavIndicator);
