@@ -11,7 +11,6 @@ window.onload = () => {
   main();
   loadSkillsData();
   loadProjectsData();
-  hideFilterOnMobile();
 };
 
 // main is a boot function that initializes the page
@@ -38,7 +37,7 @@ const main = () => {
   hamburger.addEventListener("click", toggleNavbar);
   navContainer.addEventListener("click", addNavIndicator);
   navContainer.addEventListener("mouseout", resetNavIndicator);
-  navContainer.addEventListener("mouseenter",showNavIndicator,true) // active event delegation);
+  navContainer.addEventListener("mouseenter", showNavIndicator, true); // active event delegation);
 };
 
 //----------------FETCH DATA-----------------
@@ -109,17 +108,18 @@ const toggleTheme = event => {
   }
 };
 
-const toggleNavbar = event => {
+const toggleNavbar = () => {
   const navItemsWrapper = document.querySelector(".nav__items");
+  const hamburger = document.querySelector(".hamburger");
 
-  event.target.classList.toggle(ACTIVE_CLASS);
+  hamburger.classList.toggle(ACTIVE_CLASS);
   navItemsWrapper.classList.toggle(ACTIVE_CLASS);
 };
 
 const addNavIndicator = event => {
   // in mobile device when user click a link then navbar will be hide
   if (isMobile()) {
-    toggleNavbar(event);
+    toggleNavbar();
   }
 
   const marker = document.querySelector(".nav__marker");
@@ -245,13 +245,6 @@ const submitContactForm = async event => {
     toast.style.display = "none";
     toast.innerText = "";
   }, 3000);
-};
-
-const hideFilterOnMobile = () => {
-  const filterSkilledContainer = document.querySelector(".skills__filter");
-  if (isMobile()) {
-    filterSkilledContainer.style.display = "none";
-  }
 };
 
 //filtering skills based on checkboxes
