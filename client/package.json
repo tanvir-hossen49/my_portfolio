@@ -22,5 +22,8 @@
     "gulp-terser": "^2.1.0",
     "postcss": "^8.4.26",
     "sass": "^1.63.6"
+  },
+  "dependencies": {
+    "@vercel/analytics": "^1.0.2"
   }
 }
